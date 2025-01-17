@@ -1,0 +1,13 @@
+{
+    "name": "chart-widget",
+    "version": "1.0.0",
+    "description": "Charting widget dependencies.",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "Esri PS",
+    "dependencies": {
+        "echarts": "^5.6.0"
+    }
+}

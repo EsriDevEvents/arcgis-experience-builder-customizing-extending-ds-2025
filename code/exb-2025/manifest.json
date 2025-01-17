@@ -1,0 +1,7 @@
+{
+    "name": "fed-ds-2025",
+    "type": "exb-web-extension-repo",
+    "description": "This is a web extension repo for the 2025 Esri FedGIS Conference and Developer & Technology Summit.",
+    "copyright": "",
+    "license": "http://www.apache.org/licenses/LICENSE-2.0"
+  }

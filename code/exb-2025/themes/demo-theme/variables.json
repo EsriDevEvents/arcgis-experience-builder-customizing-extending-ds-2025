@@ -1,0 +1,9 @@
+{
+	"darkTheme": true,
+	"colors": {
+		"primary": "#c90076"
+	},
+	"typography": {
+		"fontFamilyBase": "Roboto"
+	}
+}

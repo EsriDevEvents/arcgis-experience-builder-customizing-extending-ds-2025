@@ -1,0 +1,23 @@
+# Demo Charting Widget
+
+A Experience Builder apps and widgets repository for demonstrational purposes that uses a 3rd party dependency.
+
+## Get Started
+
+1. Clone this repo to the `client` directory of a developer edition of Experience Builder.
+2. To install the 3rd party dependcency, in your terminal, navigate to the `chart-demo` directory and run `npm i`.
+3. Navigate back to the `client` directory and execute the `npm start` command.
+4. Choose the "Charting Demo" widget from the list of custom widgets from within the builder interface.
+5. Configure the widget by selecting a `DataSource`.
+
+### Additional Information
+
+#### Esri Professional Services Team
+
+- Softare Engineer: Gavin Rehkemper
+- Software Engineering: Shawn Goulet
+
+#### Technical References
+
+- [Getting started](https://developers.arcgis.com/experience-builder/guide/getting-started-widget/)
+- [Apache ECharts](https://echarts.apache.org/en/index.html)

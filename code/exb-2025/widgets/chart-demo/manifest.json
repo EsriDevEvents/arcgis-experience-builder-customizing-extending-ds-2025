@@ -1,0 +1,19 @@
+{
+  "name": "chart-demo",
+  "label": "Charting Demo",
+  "type": "widget",
+  "version": "1.16.0",
+  "exbVersion": "1.16.0",
+  "author": "Esri PS",
+  "description": "This is a charting widget. This widget demonstrates both how to construct a custom widget and how to use a third-party charting library in a widget using the Apache ECharts library.",
+  "copyright": "",
+  "license": "http://www.apache.org/licenses/LICENSE-2.0",
+  "properties": {},
+  "translatedLocales": [
+    "en"
+  ],
+  "defaultSize": {
+    "width": 400,
+    "height": 400
+  }
+}
