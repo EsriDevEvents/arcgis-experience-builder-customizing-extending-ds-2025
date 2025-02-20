@@ -145,25 +145,105 @@
 
         <section data-markdown data-background="img/2025/dev/2.png">
           <script type="text/template">
-            ## Content
+            ## Two patterns
 
-            - content 1
-            - content 2
-            - content 3 tbd
+            1. ArcGIS Enterprise
+            2. Developer Edition > host on a web server
           </script>
-        </section>
-
-        <section data-background="img/2025/dev/4.png">
-          <h2 style="text-align: left">Deployment Automation</h2>
         </section>
 
         <section data-markdown data-background="img/2025/dev/2.png">
           <script type="text/template">
-            ## Content
+            ## ArcGIS Enterprise
 
-            - content 1
-            - content 2
-            - content 3 tbd
+            1. Deploy custom widgets to Experience Builder within ArcGIS Enterprise
+            2. Users within ArcGIS Enterprise can build Experiences with those custom widgets
+            3. ArcGIS Enterprise 11.0 or higher
+
+            - Documentation: [links.esri.com/exb-share-custom-widget](https://links.esri.com/exb-share-custom-widget)
+            - Detailed instructions (blog post): [links.esri.com/exb-add-custom-widgets-blog](https://links.esri.com/exb-add-custom-widgets-blog)
+          </script>
+        </section>
+
+        <section data-markdown data-background="img/2025/dev/2.png">
+          <script type="text/template">
+            ## Developer Edition
+
+            1. Build the Experience with your custom widgets
+            2. Download as ZIP
+            3. Unzip files
+            4. If there is any private content, add <code style="background-color: grey;">clientId/</code> to <code style="background-color: grey;">cdn/** app-string **/config.json/</code>
+            5. Host the files on a web server
+          </script>
+        </section>
+
+        <section data-background="img/2025/dev/4.png">
+          <h2 style="text-align: left">Deployment automation</h2>
+        </section>
+
+        <section data-markdown data-background="img/2025/dev/2.png">
+          <script type="text/template">
+            ## Why automation?
+
+            - Faster builds
+            - Consistent builds
+            - Test integration
+            - The "reference" application
+            - Branch deployments
+          </script>
+        </section>
+
+        <section data-markdown data-background="img/2025/dev/2.png">
+          <script type="text/template">
+            ## How to automate
+
+            - Store the reference version of each app
+            - Auto-build using your CI/CD env of choice:
+              - GitHub Actions*
+              - Azure DevOps
+              - AWS CodePipeline
+              - GitLab Actions
+              - Jenkins
+              - Etc.
+          </script>
+        </section>
+
+        <section data-markdown data-background="img/2025/dev/2.png">
+          <script type="text/template">
+            ## Auto-build outcomes
+
+            - Consistent outputs
+            - Easier version management (via Git branching)
+            - Quicker bug investigations (is it happening on the reference app?)
+            - More organized management of app config versions
+            - Quickly/easily share app both within & outside of team/organization
+          </script>
+        </section>
+
+        <section data-markdown data-background="img/2025/dev/2.png">
+          <script type="text/template">
+            ## Folder structure
+
+            - manifest.json
+            - apps/
+              - 0/
+              - 1/
+              - zero/
+              - one/
+            - widgets/
+              - custom-widget-1/
+              - custom-widget-2/
+          </script>
+        </section>
+
+        <section data-markdown data-background="img/2025/dev/2.png">
+          <script type="text/template">
+            ## Auto-build
+
+            - Create file:
+            <code style="background-color: grey;">.github/workflows/build-app.yml</code>
+
+            - Demo repo: [https://github.com/gavinr-maps/experience-builder-devops-example](https://github.com/gavinr-maps/experience-builder-devops-example)
           </script>
         </section>
 
@@ -192,6 +272,18 @@
             - content 1
             - content 2
             - content 3 tbd
+          </script>
+        </section>
+
+        <section data-markdown data-background="img/2025/dev/2.png">
+          <script type="text/template">
+            ## Session Resources
+
+            |  |  |
+            | --- | --- |
+            | Code from presentation | [code](https://github.com/EsriDevEvents/arcgis-experience-builder-for-devs-fedgis-2025/tree/main/code/) |
+            | Experience Builder developer documentation | [developers.arcgis.com/experience-builder](https://developers.arcgis.com/experience-builder/) |
+            | Esri Community: Experience Builder | [community.esri.com/t5/arcgis-experience-builder/ct-p/arcgis-experience-builder](https://community.esri.com/t5/arcgis-experience-builder/ct-p/arcgis-experience-builder) |
           </script>
         </section>
 
