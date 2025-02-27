@@ -163,6 +163,15 @@
           </script>
         </section>
 
+        <section data-background="img/2025/dev/5.png">
+          <h2 style="text-align: right">
+            Deploy custom widget to ArcGIS Enterprise
+          </h2>
+          <p style="text-align: right; color: var(--r-section-subhead-color)">
+            Demo
+          </p>
+        </section>
+
         <section data-markdown data-background="img/2025/dev/2.png">
           <script type="text/template">
             ## Developer Edition
@@ -211,18 +220,6 @@
 
         <section data-markdown data-background="img/2025/dev/2.png">
           <script type="text/template">
-            ## Auto-build outcomes
-
-            - Consistent outputs
-            - Easier version management (via Git branching)
-            - Quicker bug investigations (is it happening on the reference app?)
-            - More organized management of app config versions
-            - Quickly/easily share app both within & outside of team/organization
-          </script>
-        </section>
-
-        <section data-markdown data-background="img/2025/dev/2.png">
-          <script type="text/template">
             ## Folder structure
 
             - manifest.json
@@ -251,18 +248,75 @@
           </script>
         </section>
 
+        <section data-markdown data-background="img/2025/dev/2.png">
+          <script type="text/template">
+            ## Auto-build outcomes
+
+            - Consistent outputs
+            - Easier version management (via Git branching)
+            - Quicker bug investigations (is it happening on the reference app?)
+            - More organized management of app config versions
+            - Quickly/easily share app both within & outside of team/organization
+          </script>
+        </section>
+
         <section data-background="img/2025/dev/4.png">
           <h2 style="text-align: left">Data Sources</h2>
         </section>
 
         <section data-markdown data-background="img/2025/dev/2.png">
           <script type="text/template">
-            ## Content
+            ## Data sources: what are they?
 
-            - content 1
-            - content 2
-            - content 3 tbd
+            - How a widget accesses data
+            - How widgets share data
+            - Contains: schema, records, child (or parent)
           </script>
+        </section>
+
+        <section data-markdown data-background="img/2025/dev/2.png">
+          <script type="text/template">
+            ## Commonly used
+
+            - `DataSourceManager`
+            - `<DataSourceComponent />`
+            - Types:
+              - `MapServiceDataSource` / `FeatureLayerDataSource`
+              - `WebMapDataSource` / `WebSceneDataSource`
+              - `FeatureLayerDataSource`, `ImageryLayerDataSource`, etc..
+          </script>
+        </section>
+
+        <section data-markdown data-background="img/2025/dev/2.png">
+          <script type="text/template">
+            ## Data views
+
+            - Think of like a **view** of a relational database
+            - Same interface as `DataSource`, but with a few extra properties
+          </script>
+        </section>
+
+        <section data-background="img/2025/dev/5.png">
+          <h2 style="text-align: right">Data views</h2>
+          <p style="text-align: right; color: var(--r-section-subhead-color)">
+            Demo
+          </p>
+        </section>
+
+        <section data-markdown data-background="img/2025/dev/2.png">
+          <script type="text/template">
+            ## Selection data source
+
+            - Data view of the main data source
+            - Identified by `${mainDataSourceId}-selection`
+          </script>
+        </section>
+
+        <section data-background="img/2025/dev/5.png">
+          <h2 style="text-align: right">Selection data source</h2>
+          <p style="text-align: right; color: var(--r-section-subhead-color)">
+            Demo
+          </p>
         </section>
 
         <section data-background="img/2025/dev/4.png">
@@ -271,11 +325,48 @@
 
         <section data-markdown data-background="img/2025/dev/2.png">
           <script type="text/template">
-            ## Content
+            ## Widget communication methods
 
-            - content 1
-            - content 2
-            - content 3 tbd
+            - Common data sources
+            - Data Actions
+            - Message subscribing
+            - Redux
+          </script>
+        </section>
+
+        <section data-markdown data-background="img/2025/dev/2.png">
+          <script type="text/template">
+            ## Data Actions
+
+            Place an entry in the "Actions" menu
+
+            ![](img/data-action-table.png)
+
+            [Demo](https://gavinr-maps.github.io/arcgis-experience-builder-sdk-resources-demos/show-record-id/) ([code](https://github.com/gavinr-maps/arcgis-experience-builder-sdk-resources-demos/blob/master/widgets/show-record-id/src/data-actions/show-id.ts))
+          </script>
+        </section>
+
+        <section data-markdown data-background="img/2025/dev/2.png">
+          <script type="text/template">
+            ## Message Subscribing
+
+            Place an entry in the "Message Actions" configuration panel for other widgets.
+
+            ![](img/message-subscriber.png)
+
+            [Demo](https://gavinr-maps.github.io/arcgis-experience-builder-sdk-resources-demos/message-subscriber/) ([code](https://github.com/gavinr-maps/arcgis-experience-builder-sdk-resources-demos/blob/master/widgets/message-subscriber/src/actions/query-action.ts))
+          </script>
+        </section>
+
+        <section data-markdown data-background="img/2025/dev/2.png">
+          <script type="text/template">
+            ## Redux
+
+            - Most customizable and configurable option
+            - Great for communication between 2 custom widgets that you control both from.
+            - See "redux" widget in the Experience Builder samples repo:
+
+            [developers.arcgis.com/experience-builder/sample-code/widgets/redux/](https://developers.arcgis.com/experience-builder/sample-code/widgets/redux/)
           </script>
         </section>
 
@@ -285,7 +376,7 @@
 
             |  |  |
             | --- | --- |
-            | Code from presentation | [code](https://github.com/EsriDevEvents/arcgis-experience-builder-for-devs-fedgis-2025/tree/main/code/) |
+            | Code and slides from this presentation | [esriurl.com/exb-ce-ds25](https://esriurl.com/exb-ce-ds25) |
             | Experience Builder developer documentation | [developers.arcgis.com/experience-builder](https://developers.arcgis.com/experience-builder/) |
             | Esri Community: Experience Builder | [community.esri.com/t5/arcgis-experience-builder/ct-p/arcgis-experience-builder](https://community.esri.com/t5/arcgis-experience-builder/ct-p/arcgis-experience-builder) |
           </script>
