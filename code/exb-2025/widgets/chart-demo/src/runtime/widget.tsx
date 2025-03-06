@@ -3,32 +3,38 @@ import {
   React,
   type AllWidgetProps,
   DataSourceComponent,
-  type FeatureLayerDataSource
+  type FeatureLayerDataSource,
+  FormattedMessage,
+  hooks
 } from 'jimu-core'
 import { type FeatureDataRecord } from 'jimu-arcgis'
 import * as echarts from 'echarts'
-import { type IMConfig } from '../config'
 
-// DataSource: https://sampleserver6.arcgisonline.com/arcgis/rest/services/Census/MapServer/2
+/**********************************LOCAL IMPORTS*********************************/
+import { type IMConfig } from '../config'
+import defaultI18nMessages from './translations/default'
+
+// DataSource FeatureLayer: https://sampleserver6.arcgisonline.com/arcgis/rest/services/Census/MapServer/2
+// DataSource WebMap: 019fa672af30459e95ae088c650d745b
 
 /******************************WIDGET FUNCTION********************************/
 const Widget = (props: AllWidgetProps<IMConfig>) => {
   /******************************LOCAL STATE********************************/
-  // Extract the useDataSources and id from the widget's props
-  const { useDataSources, id } = props
-  // Create a ref for the chart div
-  const chartRef = React.useRef<HTMLDivElement>(null)
+  const { useDataSources, id, config } = props // Extract the useDataSources and id from the widget's props
+  const chartRef = React.useRef<HTMLDivElement>(null) // Create a ref for the chart div
   // Create state variables for the data source, chart, series array, fips array, and countyState array
   const [dataSource, setDataSource] = React.useState<FeatureLayerDataSource>()
   const [chart, setChart] = React.useState<echarts.ECharts>()
   const [seriesArray, setSeriesArray] = React.useState<
-  Array<{ name: string, type: string, stack: string, data: number[] }>
+  Array<{ name: string, type: string, stack: string, data: number[], emphasize: { focus: string } }>
   >([])
   const [fipsArray, setFipsArray] = React.useState<string[]>([])
   const [countyStateArray, setCountyStateArray] = React.useState<string[]>([])
 
-  /******************************DATASOURCE FUNCTIONS********************************/
+  // USE THE TRANSLATION HOOK
+  const t = hooks.useTranslation(defaultI18nMessages)
 
+  /******************************DATASOURCE FUNCTIONS********************************/
   /**
    * Set the data source once it is created
    * @param dataSource - The data source set in builder configuration
@@ -54,40 +60,68 @@ const Widget = (props: AllWidgetProps<IMConfig>) => {
   const createChart = () => {
     const option = {
       title: {
-        text: 'Sample Census county data'
+        text: `${config.sampleCensusCountyData}`,
+        textAlign: 'left',
+        textVerticalAlign: 'top'
       },
       tooltip: {
-        trigger: 'axis'
+        trigger: 'axis',
+        axisPointer: {
+          type: 'shadow'
+        }
       },
       legend: {
         data: seriesArray.map((x) => x.name),
         type: 'scroll',
         orient: 'horizontal',
-        top: 'bottom'
+        itemGap: 5,
+        width: 500,
+        left: 'center',
+        bottom: 0
       },
       dataZoom: [
         {
-          show: true,
-          realtime: true,
-          start: 65,
-          end: 85
+          type: 'slider',
+          xAxisIndex: 0,
+          bottom: 40,
+          start: 0,
+          end: 10,
+          minSpan: 10,
+          height: 24,
+          fillerColor: '#d467a7',
+          moveHandleSize: 8,
+          moveHandleStyle: { color: '#c90076' },
+          dataBackground: { areaStyle: { color: '#d467a7' } },
+          selectedDataBackground: '#b30369'
         },
         {
           type: 'inside',
-          realtime: true,
-          start: 65,
-          end: 85
+          xAxisIndex: 0,
+          start: 0,
+          end: 100,
+          minSpan: 10
+        },
+        {
+          type: 'inside',
+          yAxisIndex: 0,
+          start: 0,
+          end: 100,
+          minSpan: 10
         }
       ],
       grid: {
         left: '3%',
         right: '4%',
-        bottom: '3%',
+        bottom: '10%',
+        top: '10%',
         containLabel: true
       },
       toolbox: {
+        show: true,
         feature: {
-          saveAsImage: {}
+          mark: { show: true },
+          restore: { show: true },
+          saveAsImage: { show: true }
         }
       },
       xAxis: {
@@ -126,12 +160,11 @@ const Widget = (props: AllWidgetProps<IMConfig>) => {
       .catch((err) => {
         console.error(err)
       })
-    // Get the max record count (page size) for the data source
-    const pageSize = dataSource.restLayer.layerDefinition.maxRecordCount
-    let allRecords: FeatureDataRecord[] = []
-    let page = 1
+    const pageSize = dataSource.restLayer.layerDefinition.maxRecordCount // Get the max record count (page size) for the data source
+    let allRecords: FeatureDataRecord[] = [] // Create an array to hold all records
+    let page = 1 // Set the initial page to 1
 
-    // Fetch all records from the data source using pagination
+    // Fetch all records from the data source using pagination while the allRecords array is less than the record count
     while (allRecords.length < recordCount) {
       await dataSource
         .load(
@@ -153,7 +186,7 @@ const Widget = (props: AllWidgetProps<IMConfig>) => {
         })
     }
 
-    // Create arrays for the chart
+    // Create arrays for the chart | TODO: Refactor this to be more dynamic
     const ageUnder5 = allRecords.map((x) => x.feature.attributes.AGE_UNDER5)
     const ageFive17 = allRecords.map((x) => x.feature.attributes.AGE_5_17)
     const ageEighteen21 = allRecords.map((x) => x.feature.attributes.AGE_18_21)
@@ -175,49 +208,91 @@ const Widget = (props: AllWidgetProps<IMConfig>) => {
         name: 'Age under 5',
         type: 'bar',
         stack: 'Total',
-        data: ageUnder5
+        data: ageUnder5,
+        emphasize: {
+          focus: 'series'
+        }
       },
       {
         name: 'Age 5-17',
         type: 'bar',
         stack: 'Total',
-        data: ageFive17
+        data: ageFive17,
+        emphasize: {
+          focus: 'series'
+        }
       },
       {
         name: 'Age 18-21',
         type: 'bar',
         stack: 'Total',
-        data: ageEighteen21
+        data: ageEighteen21,
+        emphasize: {
+          focus: 'series'
+        }
       },
       {
         name: 'Age 22-29',
         type: 'bar',
         stack: 'Total',
-        data: ageTwentyTwo29
+        data: ageTwentyTwo29,
+        emphasize: {
+          focus: 'series'
+        }
       },
       {
         name: 'Age 30-39',
         type: 'bar',
         stack: 'Total',
-        data: ageThirty39
+        data: ageThirty39,
+        emphasize: {
+          focus: 'series'
+        }
       },
       {
         name: 'Age 40-49',
         type: 'bar',
         stack: 'Total',
-        data: ageForty49
+        data: ageForty49,
+        emphasize: {
+          focus: 'series'
+        }
       },
       {
         name: 'Age 50-64',
         type: 'bar',
         stack: 'Total',
-        data: ageFifty64
+        data: ageFifty64,
+        emphasize: {
+          focus: 'series'
+        }
       },
       {
         name: 'Age 65 and up',
         type: 'bar',
         stack: 'Total',
-        data: ageSixty5up
+        data: ageSixty5up,
+        emphasize: {
+          focus: 'series'
+        }
+      },
+      {
+        name: '65+',
+        type: 'bar',
+        stack: 'Total',
+        data: ageSixty5up,
+        emphasize: {
+          focus: 'series'
+        }
+      },
+      {
+        name: 'Under 5',
+        type: 'bar',
+        stack: 'Total',
+        data: ageUnder5,
+        emphasize: {
+          focus: 'series'
+        }
       }
     ]
     setCountyStateArray(countyState)
@@ -259,10 +334,15 @@ const Widget = (props: AllWidgetProps<IMConfig>) => {
     }
   }, [chart, seriesArray, countyStateArray])
 
-  /******************************MARK-UP********************************/
+  /****************************MARK-UP**********************************/
   // If there is no data source, display a message to select a data source
   if (!useDataSources?.[0]) {
-    return <div>Please select a data source</div>
+    return (
+      <FormattedMessage
+        id='selectDataSource'
+        defaultMessage={t('pleaseSelectDataSource')}
+      />
+    )
   } else {
     // Return the chart and data source component
     return (
