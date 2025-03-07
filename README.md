@@ -1,4 +1,4 @@
-# ArcGIS Experience Builder: Customizing and Extending
+# ArcGIS Experience Builder: Advanced Customization
 
 2025 Esri Developer & Technology Summit
 

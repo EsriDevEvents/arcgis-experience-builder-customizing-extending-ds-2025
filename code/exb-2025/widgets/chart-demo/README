@@ -4,7 +4,7 @@ A Experience Builder apps and widgets repository for demonstrational purposes th
 
 ## Get Started
 
-1. Clone this repository [ArcGIS Experience Builder: Customizing and Extending | Developer & Technology Summit 2025](https://github.com/EsriDevEvents/arcgis-experience-builder-customizing-extending-ds-2025) and place the `exb-2025` directory within the `client` directory of your developer edition Experience Builder installation.
+1. Clone this repository [ArcGIS Experience Builder: Advanced Customization | Developer & Technology Summit 2025](https://github.com/EsriDevEvents/arcgis-experience-builder-customizing-extending-ds-2025) and place the `exb-2025` directory within the `client` directory of your developer edition Experience Builder installation.
 2. To install the 3rd party dependcency, in your terminal, navigate to the `chart-demo` directory and run `npm i`.
 3. Navigate back to the `client` directory and execute the `npm start` command.
 4. Choose the "Charting Demo" widget from the list of custom widgets from within the builder interface.
@@ -15,7 +15,7 @@ A Experience Builder apps and widgets repository for demonstrational purposes th
 #### Esri Professional Services Team
 
 - Softare Engineer: Gavin Rehkemper
-- Software Engineering: Shawn Goulet
+- Software Engineer: Shawn Goulet
 
 #### Technical References
 

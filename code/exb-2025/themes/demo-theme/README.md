@@ -4,7 +4,7 @@ This sample demonstrates how to customize color and font in a custom theme withi
 
 ## How to use this custom theme
 
-Clone this repository [ArcGIS Experience Builder: Customizing and Extending | Developer & Technology Summit 2025](https://github.com/EsriDevEvents/arcgis-experience-builder-customizing-extending-ds-2025) and copy the `exb-2025` folder to the `client` folder of your developer edition Experience Builder installation.
+Clone this repository [ArcGIS Experience Builder: Advanced Customization | Developer & Technology Summit 2025](https://github.com/EsriDevEvents/arcgis-experience-builder-customizing-extending-ds-2025) and copy the `exb-2025` folder to the `client` folder of your developer edition Experience Builder installation.
 
 ## Documentation
 
